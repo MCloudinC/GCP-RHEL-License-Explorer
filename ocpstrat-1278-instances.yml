@@ -1,0 +1,48 @@
+- name: ahmad-gcp-high-qznr6-master-1
+  zone: us-central1-b
+  machineType: n2-standard-4
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: ahmad-gcp-high-qznr6-master-0
+  zone: us-central1-a
+  machineType: n2-standard-4
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: ahmad-gcp-high-qznr6-master-2
+  zone: us-central1-c
+  machineType: n2-standard-4
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: ahmad-gcp-high-qznr6-worker-c-56wf7
+  zone: us-central1-c
+  machineType: c3-highcpu-192-metal
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: ahmad-gcp-high-qznr6-worker-c-mj797
+  zone: us-central1-c
+  machineType: c3-highcpu-192-metal
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: ahmad-gcp-high-qznr6-worker-c-vt74z
+  zone: us-central1-c
+  machineType: c3-highcpu-192-metal
+  status: RUNNING
+  licenses:
+    - vm-options:enable-vmx
+- name: instance-20250226-224217
+  zone: us-central1-c
+  machineType: e2-medium
+  status: TERMINATED
+  licenses:
+    - debian-cloud:debian-12-bookworm
+- name: instance-20250226-224251
+  zone: us-central1-c
+  machineType: e2-medium
+  status: TERMINATED
+  licenses:
+    - rhel-cloud:rhel-9-server
