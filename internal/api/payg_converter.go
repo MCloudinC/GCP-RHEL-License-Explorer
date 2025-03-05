@@ -145,6 +145,26 @@ func ConvertToPAYG(ctx context.Context, instances []Instance, computeService *co
 			paygLicense = "https://www.googleapis.com/compute/v1/projects/rhel-cloud/global/licenses/rhel-8-server"
 		case strings.Contains(currentOS, "rhel-9"):
 			paygLicense = "https://www.googleapis.com/compute/v1/projects/rhel-cloud/global/licenses/rhel-9-server"
+		case len(instance.LicenseCodes) == 0:
+			// No license codes found, check disk for any OS indicators
+			fmt.Printf("No license codes found for VM %s. Attempting to determine OS version...\n", instance.Name)
+
+			// Get disk details directly
+			disk, err := computeService.Disks.Get(
+				instance.Project,
+				instance.Zone,
+				diskName).Context(ctx).Do()
+
+			if err != nil {
+				fmt.Printf("Could not get disk details: %v. Defaulting to RHEL 9.\n", err)
+				paygLicense = "https://www.googleapis.com/compute/v1/projects/rhel-cloud/global/licenses/rhel-9-server"
+			} else if disk.SourceImage != "" && strings.Contains(strings.ToLower(disk.SourceImage), "rhel-8") {
+				fmt.Printf("Detected RHEL 8 from disk source image: %s\n", disk.SourceImage)
+				paygLicense = "https://www.googleapis.com/compute/v1/projects/rhel-cloud/global/licenses/rhel-8-server"
+			} else {
+				fmt.Printf("Could not determine specific OS version. Defaulting to RHEL 9.\n")
+				paygLicense = "https://www.googleapis.com/compute/v1/projects/rhel-cloud/global/licenses/rhel-9-server"
+			}
 		default:
 			conversion.Success = false
 			results = append(results, conversion)

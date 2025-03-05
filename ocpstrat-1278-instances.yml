@@ -1,0 +1,28 @@
+- name: byos2payg0boogie
+  zone: us-central1-c
+  machineType: e2-medium
+  status: TERMINATED
+  licenses:
+    - debian-cloud:debian-12-bookworm
+- name: byos2payg2
+  zone: us-central1-c
+  machineType: e2-medium
+  status: TERMINATED
+  licenses:
+    - rhel-cloud:rhel-9-byos
+    - rhel-cloud:rhel-7-els
+- name: instance-20250226-224251
+  zone: us-central1-c
+  machineType: e2-medium
+  status: TERMINATED
+  licenses:
+    - rhel-cloud:rhel-9-byos
+    - rhel-cloud:rhel-7-els
+- name: lic-free
+  zone: us-central1-c
+  machineType: e2-medium
+  status: RUNNING
+  licenses:
+    - centos-cloud:centos-stream-9
+    - prod-vmmig-images-public:vmmigration-disk-image-import-license
+    - prod-vmmig-images-public:vmmigration-license
